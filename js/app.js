@@ -8,23 +8,19 @@ const displayData = (dataAiTools) => {
 
   const dataAll = dataAiTools.data.tools;
 
-  const features_list = document.querySelector('.features_list');
-  dataAiTools.data.tools[7].features.forEach((fea) => {
-    // console.log(fea);
-    const li = document.createElement('li');
-    li.innerHTML = `${fea}`;
-    features_list.appendChild(li);
-  });
+  
 
   const card_box = document.getElementById('card_box');
   const data = dataAll.slice(0, 6);
   data.forEach((element) => {
-    const fea = element.features.map((fea) => fea);
-
+    console.log(element);
+    // const fea = element.features.map((fea) => fea);
+    const {image,name,published_in,features} = element;
+    // console.log(features);
     const card_div = document.createElement('div');
     card_div.classList.add('card', 'mt-5');
     card_div.innerHTML = `
-    <img src="${element.image}" class="card-img-top " alt="card image">
+    <img src="${image}" class="card-img-top " alt="card image">
     <div class="card-body">
         <h5 class="card-title">Features</h5>
         <ol class="features_list">
@@ -35,8 +31,8 @@ const displayData = (dataAiTools) => {
         <div class="d-flex align-items-center justify-content-between">
 
             <div>
-                <h4 class="fw-bold">${element.name}</h4>            
-                <p>${element.published_in}</p>
+                <h4 class="fw-bold">${name}</h4>            
+                <p>${published_in}</p>
             </div>
 
             <span type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
