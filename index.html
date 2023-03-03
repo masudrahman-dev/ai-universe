@@ -18,43 +18,43 @@
         <h1 class="display-2 fw-bold">AI Universe Hub</h1>
         <button class="btn btn-primary mb-5 mt-3">Sort date</button>
     </header>
-    <main class="container">
+    <main class="container" id="main_conainer">
         <!-- card -->
+        <div id="card_box">
 
-        <div class="card " style="width: 18rem;">
-            <img src="https://source.unsplash.com/user/c_v_r/100x100" class="card-img-top " alt="card image">
-            <div class="card-body">
-                <h5 class="card-title">Features</h5>
-                <ol>
-                    <li>Natural language processing</li>
-                    <li>Contextual understanding</li>
-                    <li>Text generation</li>
-                </ol>
-                <hr>
-                <div class="d-flex align-items-center justify-content-between">
+            <div class="card ">
+                <img src="https://source.unsplash.com/user/c_v_r/100x100" class="card-img-top " alt="card image">
+                <div class="card-body">
+                    <h5 class="card-title">Features</h5>
+                    <ol class="features_list">
+                        <li>Natural language processing</li>
+                        <li>Contextual understanding</li>
+                        <li>Text generation</li>
+                    </ol>
+                    <hr>
+                    <div class="d-flex align-items-center justify-content-between">
 
-                    <div>
-                        <h4 class="fw-bold">Chat GPT</h4>
-                        <input class="border border-0" type="date" name="date" id="date">
+                        <div>
+                            <h4 class="fw-bold">Chat GPT</h4>
+                            <p>12/2/23</p>
+                        </div>
+
+                        <span type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <img class="shadow-sm rounded-pill" src="./images/datails-icon.svg" alt="">
+                        </span>
                     </div>
 
-                    <span type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <img class="shadow-sm rounded-pill" src="./images/datails-icon.svg" alt="">
-                    </span>
                 </div>
-
             </div>
         </div>
 
 
         <!-- Modal -->
-        <div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- <div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered  ">
                 <div class="modal-content p-5 bg-secondary position-relative">
 
-                    <!-- <button type="button" class="btn-close rounded-circle bg-warning p-3 align-self-center mb-3"
-                            data-bs-dismiss="modal" aria-label="Close">
-                        </button> -->
+
                     <button type="button"
                         class="btn-close rounded-pill bg-warning p-3 position-absolute top-0 start-100 translate-middle"
                         data-bs-dismiss="modal" aria-label="Close">
@@ -63,7 +63,7 @@
 
 
                     <div class="row">
-                        <!-- left -->
+
                         <div class="col-6 ">
                             <h4 class="display-6 fw-bold text-light">ChatGPT is an AI-powered chatbot platform that
                                 uses OpenAI's GPT technology to
@@ -111,7 +111,7 @@
                             </div>
 
                         </div>
-                        <!-- right -->
+
                         <div class="col-6">
                             <div class="position-relative">
                                 <button class="btn btn-primary mt-3 me-3 position-absolute top-0 end-0">94%
@@ -129,7 +129,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
         <div class="text-center">
