@@ -5,11 +5,146 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ai universe</title>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+
+    </style>
 </head>
 
 <body>
-    <h1>test</h1>
+
+    <header class="container text-center mt-5">
+        <h1 class="display-2 fw-bold">AI Universe Hub</h1>
+        <button class="btn btn-primary mb-5 mt-3">Sort date</button>
+    </header>
+    <main class="container">
+        <!-- card -->
+
+        <div class="card " style="width: 18rem;">
+            <img src="https://source.unsplash.com/user/c_v_r/100x100" class="card-img-top " alt="card image">
+            <div class="card-body">
+                <h5 class="card-title">Features</h5>
+                <ol>
+                    <li>Natural language processing</li>
+                    <li>Contextual understanding</li>
+                    <li>Text generation</li>
+                </ol>
+                <hr>
+                <div class="d-flex align-items-center justify-content-between">
+
+                    <div>
+                        <h4 class="fw-bold">Chat GPT</h4>
+                        <input class="border border-0" type="date" name="date" id="date">
+                    </div>
+
+                    <span type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <img class="shadow-sm rounded-pill" src="./images/datails-icon.svg" alt="">
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered  ">
+                <div class="modal-content p-5 bg-secondary position-relative">
+
+                    <!-- <button type="button" class="btn-close rounded-circle bg-warning p-3 align-self-center mb-3"
+                            data-bs-dismiss="modal" aria-label="Close">
+                        </button> -->
+                    <button type="button"
+                        class="btn-close rounded-pill bg-warning p-3 position-absolute top-0 start-100 translate-middle"
+                        data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+
+
+
+                    <div class="row">
+                        <!-- left -->
+                        <div class="col-6 ">
+                            <h4 class="display-6 fw-bold text-light">ChatGPT is an AI-powered chatbot platform that
+                                uses OpenAI's GPT technology to
+                                simulate human conversation.</h4>
+
+                            <div class="d-flex gap-3 text-center my-5">
+
+                                <div class="text-success bg-white fw-bold p-3 rounded">
+                                    $10/month
+                                    Basic
+                                </div>
+                                <div class="text-warning bg-white fw-bold p-3 rounded">
+                                    $50/month
+                                    Pro
+                                </div>
+                                <div class="text-danger bg-white fw-bold p-3 rounded">
+                                    Contact
+                                    us
+                                    Enterprise
+                                </div>
+
+                            </div>
+                            <div class="">
+                                <div class="d-flex gap-3 mt-4 text-light">
+                                    <div>
+                                        <h5>Features</h5>
+                                        <ul>
+                                            <li>Customizable responses</li>
+                                            <li>Multilingual support</li>
+                                            <li>Seamless integration</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h5>Integrations</h5>
+                                        <ul>
+                                            <li>FB Messenger
+                                            </li>
+                                            <li> Slack</li>
+                                            <li>
+                                                Telegram</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- right -->
+                        <div class="col-6">
+                            <div class="position-relative">
+                                <button class="btn btn-primary mt-3 me-3 position-absolute top-0 end-0">94%
+                                    accuracy</button>
+                                <img class="img-fluid rounded" src=" https://source.unsplash.com/user/c_v_r" alt="">
+                            </div>
+                            <div class="text-light text-center mt-3">
+                                <h4>Can you give any example?</h4>
+                                <p>I'm doing well, thank you for asking. How can I assist you today?</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="text-center">
+            <button class="btn btn-primary fw-bold ">See More</button>
+        </div>
+
+
+
+
+
+    </main>
+    <!-- js -->
+    <script src="./js/app.js"></script>
+    <!-- bs js -->
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 
 </html>

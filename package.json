@@ -1,0 +1,15 @@
+{
+  "name": "b7a6-ai-universe-assignment-masudrahman-dev",
+  "version": "1.0.0",
+  "description": "Click Here to create [private repo](https://classroom.github.com/a/dhefyS56)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.0-alpha1"
+  }
+}
