@@ -65,7 +65,7 @@ const show_modal = (modal_data) => {
     pricing,
     input_output_examples,
   } = modal_data;
-  console.dir(image_link);
+  console.table(accuracy);
 
   const modal_body = (document.getElementById('modal_body').innerHTML = `
   
@@ -76,7 +76,7 @@ const show_modal = (modal_data) => {
 
 
 
-<div class="row">
+ <div class="row">
 
   <div class="col-6 ">
       <h4 class="display-6 fw-bold text-light">${description}</h4>
@@ -101,8 +101,8 @@ const show_modal = (modal_data) => {
           <div class="d-flex gap-3 mt-4 text-light">
               <div>
                   <h5>Features</h5>
-                  <ul>
-                      <li></li>
+                  <ul modal_features_list>
+                      <li>support</li>
                       <li>Multilingual support</li>
                       <li>Seamless integration</li>
                   </ul>
@@ -125,13 +125,13 @@ const show_modal = (modal_data) => {
 
   <div class="col-6">
       <div class="position-relative">
-          <button class="btn btn-primary mt-3 me-3 position-absolute top-0 end-0">94%
+          <button class="btn btn-primary mt-3 me-3 position-absolute top-0 end-0">${accuracy.score}%
               accuracy</button>
           <img class="img-fluid rounded" src="${image_link[0]}" alt="">
       </div>
       <div class="text-light text-center mt-3">
-          <h4>Can you give any example?</h4>
-          <p>I'm doing well, thank you for asking. How can I assist you today?</p>
+          <h4>${input_output_examples[0].input}</h4>
+          <p>${input_output_examples[0].output}</p>
       </div>
 
   </div>
@@ -139,5 +139,7 @@ const show_modal = (modal_data) => {
   
   `);
 };
+
+
 
 // console.log(modal_body);
