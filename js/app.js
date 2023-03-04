@@ -25,7 +25,7 @@ document.getElementById('showDataAll').addEventListener('click', () => {
 });
 const displayData = (displayData) => {
   const card_box = document.getElementById('card_box');
-  // console.log(displayData);
+  card_box.innerHTML = '';
   if (5 < displayData.length) {
     document.getElementById('showDataAll').classList.remove('d-none');
   } else {
@@ -41,7 +41,7 @@ const displayData = (displayData) => {
     <img src="${image}" class="img-fluid rounded m-3" alt="...">
     <div class="card-body">
     <h5 class="card-title">Features</h5>
-           <ol class="features_list">
+           <ol id="features_list_normal" >
             <li>${features[0]}</li>
             <li>${features[1]}</li>
             <li>${features[2]}</li>
@@ -58,10 +58,16 @@ const displayData = (displayData) => {
             </span>
         </div>
     </div>
-</div>
+    </div>
     `;
     card_box.appendChild(card_div);
   });
+
+  // const featuresList = document.getElementById('featuresList');
+  // displayData.features.forEach((fea) => {
+  //   console.log(fea);
+  // });
+
   spinner(false);
 };
 
@@ -76,7 +82,7 @@ const modal_data = (id) => {
 };
 
 const show_modal = (modal_data) => {
-  console.log(modal_data);
+  // console.log(modal_data);
   const {
     accuracy,
     description,
@@ -125,26 +131,8 @@ const show_modal = (modal_data) => {
           <div class="row mt-5 text-light">
               <div class="col">
                   <h5>Features</h5>
-                  <ul modal_features_list>
-                  <li>
-                  ${
-                    input_output_examples === null
-                      ? 'not found'
-                      : features_data[0].feature_name
-                  }
-                 </li>
-                      <li>${
-                        input_output_examples === null
-                          ? 'not found'
-                          : features_data[1].feature_name
-                      }
-                      </li>
-                      <li>${
-                        input_output_examples === null
-                          ? 'not found'
-                          : features_data[2].feature_name
-                      }
-                      </li>
+                  <ul id="featuresListModal">
+                  
                     
                     
                  
@@ -207,6 +195,43 @@ const show_modal = (modal_data) => {
 </div>
   
   `);
+
+  const featuresListModal = document.getElementById('featuresListModal');
+  // console.log(modal_data.features);
+  const features_data_arr = Object.values(modal_data.features);
+  // console.log(features_data_arr);
+
+  features_data_arr.forEach((ele) => {
+    console.log(ele.feature_name);
+    // console.log(ele.feature_name.length);
+    const li = document.createElement('li');
+    if (1) {
+      const li = document.createElement('li');
+      li.innerText = ele.feature_name;
+      featuresListModal.appendChild(li);
+    } else {
+      li.innerText = 'not found';
+      featuresListModal.appendChild(li);
+    }
+  });
+  // input_output_examples === null
+  // ? 'not found'
+  // : features_data[0].feature_name
+  // for (const key in modal_data.features) {
+  //   console.log(key);
+  //   const element = modal_data.features[key];
+  // console.log(element);
+  // }
+  // modal_data.features.forEach(element => {
+  //   console.log(element);
+  // });
+  // displayData.forEach((element) => {
+  //   element.features.forEach((ele) => {
+  //     const li = document.createElement('li');
+  //     li.innerText = ele;
+  //     featuresListModal.appendChild(li);
+  //   });
+  // });
 };
 
 function spinner(isLoading) {
