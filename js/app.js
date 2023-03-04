@@ -2,12 +2,13 @@ const aiTools = 'https://openapi.programming-hero.com/api/ai/tools';
 fetch(aiTools)
   .then((res) => res.json())
   .then((data) => displayData(data));
+spinner(true);
 
 const displayData = (dataAiTools) => {
   const dataAll = dataAiTools.data.tools;
 
   const card_box = document.getElementById('card_box');
-  const data = dataAll.slice(0, 6);
+  const data = dataAll.slice();
   data.forEach((element) => {
     // console.log(element);
     // const fea = element.features.map((fea) => fea);
@@ -42,6 +43,7 @@ const displayData = (dataAiTools) => {
     `;
     card_box.appendChild(card_div);
   });
+  spinner(false);
 };
 
 const modal_data = (id) => {
@@ -148,3 +150,13 @@ const show_modal = (modal_data) => {
   
   `);
 };
+
+function spinner(isLoading) {
+  if (isLoading) {
+    document.getElementById('spinner').classList.remove('d-none');
+  } else {
+    document.getElementById('spinner').classList.add('d-none');
+  }
+}
+
+// spinner(false);
