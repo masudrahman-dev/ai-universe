@@ -55,17 +55,25 @@ const modal_data = (id) => {
 };
 
 const show_modal = (modal_data) => {
-  //   console.log(modal_data);
+  //   console.log(modal_data.features);
   const {
     accuracy,
     description,
-    features,
     image_link,
+    features,
     integrations,
     pricing,
     input_output_examples,
   } = modal_data;
-  console.table(accuracy);
+  //   console.log(features);
+  const features_data = Object.values(features);
+  // console.dir(features_data[0].feature_name);
+  //   const features_data = Object.entries(features).map(([key, value]) => value);
+  //   console.log(features_data);
+  //   console.dir(features_data[0].feature_name);
+  //   const myObj = { a: 1, b: 2, c: 3 };
+  // const myArr = Object.values(myObj);
+  // console.log(myArr); // Output: [1, 2, 3]
 
   const modal_body = (document.getElementById('modal_body').innerHTML = `
   
@@ -102,19 +110,28 @@ const show_modal = (modal_data) => {
               <div>
                   <h5>Features</h5>
                   <ul modal_features_list>
-                      <li>support</li>
-                      <li>Multilingual support</li>
-                      <li>Seamless integration</li>
+                  <li>
+                  ${features_data[0].feature_name}
+                 </li>
+                      <li>${features_data[1].feature_name}
+                      </li>
+                      <li>${features_data[2].feature_name}
+                      </li>
+                    
+                    
+                 
                   </ul>
               </div>
               <div>
                   <h5>Integrations</h5>
                   <ul>
-                      <li>FB Messenger
+                      <li>${integrations[0]}
                       </li>
-                      <li> Slack</li>
+                      <li>${integrations[1]}</li>
                       <li>
-                          Telegram</li>
+                      ${integrations[2]}</li>
+                  
+                      
                   </ul>
               </div>
           </div>
@@ -139,7 +156,3 @@ const show_modal = (modal_data) => {
   
   `);
 };
-
-
-
-// console.log(modal_body);
