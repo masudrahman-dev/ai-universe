@@ -154,15 +154,21 @@ const show_modal = (modal_data) => {
                   <h5>Integrations</h5>
                   <ul>
                       <li>${
-                        integrations === null ? 'not found' : integrations[0]
+                        integrations === null || integrations[0] === undefined
+                          ? 'not found'
+                          : integrations[0]
                       }
                       </li>
                       <li>${
-                        integrations === null ? 'not found' : integrations[1]
+                        integrations === null || integrations[1] === undefined
+                          ? 'not found'
+                          : integrations[1]
                       }</li>
                       <li>
                       ${
-                        integrations === null ? 'not found' : integrations[2]
+                        integrations === null || integrations[2] === undefined
+                          ? 'not found'
+                          : integrations[2]
                       }</li>
                   
                       
