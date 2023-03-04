@@ -1,19 +1,18 @@
 const aiTools = 'https://openapi.programming-hero.com/api/ai/tools';
 fetch(aiTools)
   .then((res) => res.json())
-  .then((data) => displayData(data));
+  .then((data) => dataGet(data));
 spinner(true);
 
-const displayData = (dataAiTools) => {
-  const dataAll = dataAiTools.data.tools;
+const dataGet = (data) => {
+  const dataSlice = data.data.tools.slice(0, 6);
+  displayData(dataSlice);
+};
 
+const displayData = (displayData) => {
   const card_box = document.getElementById('card_box');
-  const data = dataAll.slice();
-  data.forEach((element) => {
-    // console.log(element);
-    // const fea = element.features.map((fea) => fea);
+  displayData.forEach((element) => {
     const { image, name, published_in, features, id } = element;
-    // console.log(features);
 
     const card_div = document.createElement('div');
     card_div.classList.add('col');
@@ -45,6 +44,21 @@ const displayData = (dataAiTools) => {
   });
   spinner(false);
 };
+
+const dataAll = (data) => {
+  const dataAll = data.data.tools;
+  displayData(dataAll);
+};
+
+document.getElementById('showDataAll').addEventListener('click', () => {
+  fetch(aiTools)
+    .then((res) => res.json())
+    .then((data) => dataGet(data));
+  spinner(true);
+  const dataGet = (data) => {
+    dataAll(data);
+  };
+});
 
 const modal_data = (id) => {
   const modal_data = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
