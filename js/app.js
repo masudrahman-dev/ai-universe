@@ -1,16 +1,36 @@
 const aiTools = 'https://openapi.programming-hero.com/api/ai/tools';
 fetch(aiTools)
   .then((res) => res.json())
-  .then((data) => dataGet(data));
+  .then((data) => dataSlice(data));
 spinner(true);
 
-const dataGet = (data) => {
-  const dataSlice = data.data.tools.slice(0, 6);
+const dataSlice = (data) => {
+  let dataSlice = data.data.tools.slice(0, 6);
   displayData(dataSlice);
 };
+const dataAll = (data) => {
+  const AllShowData = data.data.tools;
+  displayData(AllShowData);
+  //   displayData();
+};
 
+document.getElementById('showDataAll').addEventListener('click', () => {
+  fetch(aiTools)
+    .then((res) => res.json())
+    .then((data) => dataGet(data));
+  spinner(true);
+  const dataGet = (data) => {
+    dataAll(data);
+  };
+});
 const displayData = (displayData) => {
   const card_box = document.getElementById('card_box');
+  // console.log(displayData);
+  if (5 < displayData.length) {
+    document.getElementById('showDataAll').classList.remove('d-none');
+  } else {
+    document.getElementById('showDataAll').classList.add('d-none');
+  }
   displayData.forEach((element) => {
     const { image, name, published_in, features, id } = element;
 
@@ -45,23 +65,9 @@ const displayData = (displayData) => {
   spinner(false);
 };
 
-const dataAll = (data) => {
-  const dataAll = data.data.tools;
-  displayData(dataAll);
-};
-
-document.getElementById('showDataAll').addEventListener('click', () => {
-  fetch(aiTools)
-    .then((res) => res.json())
-    .then((data) => dataGet(data));
-  spinner(true);
-  const dataGet = (data) => {
-    dataAll(data);
-  };
-});
-
 const modal_data = (id) => {
   const modal_data = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
+  console.log(modal_data);
   fetch(modal_data)
     .then((res) => res.json())
     .then((modal_data) => {
@@ -70,7 +76,7 @@ const modal_data = (id) => {
 };
 
 const show_modal = (modal_data) => {
-  //   console.log(modal_data.features);
+  console.log(modal_data);
   const {
     accuracy,
     description,
@@ -80,6 +86,8 @@ const show_modal = (modal_data) => {
     pricing,
     input_output_examples,
   } = modal_data;
+
+  // console.log(accuracy.score === null);
 
   const features_data = Object.values(features);
 
@@ -100,16 +108,16 @@ const show_modal = (modal_data) => {
       <div class="d-flex gap-3 text-center my-5">
 
           <div class="text-success bg-white fw-bold p-3 rounded">
-          ${pricing[0].price}
-          ${pricing[0].plan}
+          ${integrations === null ? 'not found' : pricing[0].price}
+          ${integrations === null ? 'not found' : pricing[0].plan}
           </div>
           <div class="text-warning bg-white fw-bold p-3 rounded">
-          ${pricing[1].price}
-          ${pricing[1].plan}
+          ${pricing === null ? 'not found' : pricing[1].price}
+          ${pricing === null ? 'not found' : pricing[1].plan}
           </div>
           <div class="text-danger bg-white fw-bold p-3 rounded">
-          ${pricing[2].price}
-          ${pricing[2].plan}
+          ${pricing === null ? 'not found' : pricing[2].price}
+          ${pricing === null ? 'not found' : pricing[2].plan}
           </div>
 
       </div>
@@ -119,11 +127,23 @@ const show_modal = (modal_data) => {
                   <h5>Features</h5>
                   <ul modal_features_list>
                   <li>
-                  ${features_data[0].feature_name}
+                  ${
+                    input_output_examples === null
+                      ? 'not found'
+                      : features_data[0].feature_name
+                  }
                  </li>
-                      <li>${features_data[1].feature_name}
+                      <li>${
+                        input_output_examples === null
+                          ? 'not found'
+                          : features_data[1].feature_name
+                      }
                       </li>
-                      <li>${features_data[2].feature_name}
+                      <li>${
+                        input_output_examples === null
+                          ? 'not found'
+                          : features_data[2].feature_name
+                      }
                       </li>
                     
                     
@@ -133,11 +153,17 @@ const show_modal = (modal_data) => {
               <div class="col">
                   <h5>Integrations</h5>
                   <ul>
-                      <li>${integrations[0]}
+                      <li>${
+                        integrations === null ? 'not found' : integrations[0]
+                      }
                       </li>
-                      <li>${integrations[1]}</li>
+                      <li>${
+                        integrations === null ? 'not found' : integrations[1]
+                      }</li>
                       <li>
-                      ${integrations[2]}</li>
+                      ${
+                        integrations === null ? 'not found' : integrations[2]
+                      }</li>
                   
                       
                   </ul>
@@ -150,13 +176,25 @@ const show_modal = (modal_data) => {
 
   <div class="order-0 order-xl-1">
       <div class="position-relative">
-          <button class="btn btn-primary mt-3 me-3 position-absolute top-0 end-0">${accuracy.score}%
-              accuracy</button>
+          <button class="btn btn-primary mt-3 me-3 position-absolute top-0 end-0">${
+            accuracy.score === null
+              ? 'not found'
+              : accuracy.score + '%' + ' accuracy'
+          }
+             </button>
           <img class="img-fluid rounded" src="${image_link[0]}" alt="">
       </div>
       <div class="text-light text-center mt-3">
-          <h4>${input_output_examples[0].input}</h4>
-          <p>${input_output_examples[0].output}</p>
+          <h4>${
+            input_output_examples === null
+              ? 'not found'
+              : input_output_examples[0].input
+          }</h4>
+          <p>${
+            input_output_examples === null
+              ? 'not found'
+              : input_output_examples[0].output
+          }</p>
       </div>
 
   </div>
@@ -172,5 +210,3 @@ function spinner(isLoading) {
     document.getElementById('spinner').classList.add('d-none');
   }
 }
-
-// spinner(false);
