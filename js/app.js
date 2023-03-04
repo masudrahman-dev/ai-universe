@@ -4,9 +4,6 @@ fetch(aiTools)
   .then((data) => displayData(data));
 
 const displayData = (dataAiTools) => {
-  //   console.log(dataAiTools.data.tools[11]);
-  //   console.log(dataAiTools.data.tools[0].features[0]);
-
   const dataAll = dataAiTools.data.tools;
 
   const card_box = document.getElementById('card_box');
@@ -14,21 +11,23 @@ const displayData = (dataAiTools) => {
   data.forEach((element) => {
     // console.log(element);
     // const fea = element.features.map((fea) => fea);
-    const { image, name, published_in, features, description, id } = element;
-    // console.log(id);
-    const card_div = document.createElement('div');
-    card_div.classList.add('card', 'mt-5');
-    card_div.innerHTML = `
-    <img src="${image}" class="card-img-top " alt="card image">
-    <div class="card-body">
-        <h5 class="card-title">Features</h5>
-        <ol class="features_list">
-       
-          
-        </ol>
-        <hr>
-        <div class="d-flex align-items-center justify-content-between">
+    const { image, name, published_in, features, id } = element;
+    // console.log(features);
 
+    const card_div = document.createElement('div');
+    card_div.classList.add('col');
+    card_div.innerHTML = `
+    <div class="card shadow-sm">
+    <img src="${image}" class="img-fluid rounded m-3" alt="...">
+    <div class="card-body">
+    <h5 class="card-title">Features</h5>
+           <ol class="features_list">
+            <li>${features[0]}</li>
+            <li>${features[1]}</li>
+            <li>${features[2]}</li>
+            </ol>
+         <hr>
+        <div class="d-flex align-items-center justify-content-between">
             <div>
                 <h4 class="fw-bold">${name}</h4>            
                 <p>${published_in}</p>
@@ -38,8 +37,8 @@ const displayData = (dataAiTools) => {
                 <img class="shadow-sm rounded-pill" src="./images/datails-icon.svg" alt="">
             </span>
         </div>
-
     </div>
+</div>
     `;
     card_box.appendChild(card_div);
   });
@@ -65,15 +64,8 @@ const show_modal = (modal_data) => {
     pricing,
     input_output_examples,
   } = modal_data;
-  //   console.log(features);
+
   const features_data = Object.values(features);
-  // console.dir(features_data[0].feature_name);
-  //   const features_data = Object.entries(features).map(([key, value]) => value);
-  //   console.log(features_data);
-  //   console.dir(features_data[0].feature_name);
-  //   const myObj = { a: 1, b: 2, c: 3 };
-  // const myArr = Object.values(myObj);
-  // console.log(myArr); // Output: [1, 2, 3]
 
   const modal_body = (document.getElementById('modal_body').innerHTML = `
   
@@ -84,10 +76,10 @@ const show_modal = (modal_data) => {
 
 
 
- <div class="row">
+ <div class="d-flex gap-3 flex-column flex-xl-row">
 
-  <div class="col-6 ">
-      <h4 class="display-6 fw-bold text-light">${description}</h4>
+  <div class="order-1 order-xl-0">
+      <h4 class="display-6 fw-bold text-light text-center text-xl-start ">${description}</h4>
 
       <div class="d-flex gap-3 text-center my-5">
 
@@ -106,8 +98,8 @@ const show_modal = (modal_data) => {
 
       </div>
       <div class="">
-          <div class="d-flex gap-3 mt-4 text-light">
-              <div>
+          <div class="row mt-5 text-light">
+              <div class="col">
                   <h5>Features</h5>
                   <ul modal_features_list>
                   <li>
@@ -122,7 +114,7 @@ const show_modal = (modal_data) => {
                  
                   </ul>
               </div>
-              <div>
+              <div class="col">
                   <h5>Integrations</h5>
                   <ul>
                       <li>${integrations[0]}
@@ -140,7 +132,7 @@ const show_modal = (modal_data) => {
 
   </div>
 
-  <div class="col-6">
+  <div class="order-0 order-xl-1">
       <div class="position-relative">
           <button class="btn btn-primary mt-3 me-3 position-absolute top-0 end-0">${accuracy.score}%
               accuracy</button>
