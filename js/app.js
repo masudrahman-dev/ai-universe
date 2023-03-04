@@ -111,21 +111,9 @@ const show_modal = (modal_data) => {
   <div class="order-1 order-xl-0">
       <h4 class="display-6 fw-bold text-light text-center text-xl-start ">${description}</h4>
 
-      <div class="d-flex gap-3 text-center my-5">
+      <div id="price_box" class="d-flex gap-3 text-center my-5">
 
-          <div class="text-success bg-white fw-bold p-3 rounded">
-          ${integrations === null ? 'not found' : pricing[0].price}
-          ${integrations === null ? 'not found' : pricing[0].plan}
-          </div>
-          <div class="text-warning bg-white fw-bold p-3 rounded">
-          ${pricing === null ? 'not found' : pricing[1].price}
-          ${pricing === null ? 'not found' : pricing[1].plan}
-          </div>
-          <div class="text-danger bg-white fw-bold p-3 rounded">
-          ${pricing === null ? 'not found' : pricing[2].price}
-          ${pricing === null ? 'not found' : pricing[2].plan}
-          </div>
-
+       
       </div>
       <div class="">
           <div class="row mt-5 text-light">
@@ -153,7 +141,7 @@ const show_modal = (modal_data) => {
 
   <div class="order-0 order-xl-1">
       <div class="position-relative">
-          <button class="btn btn-primary mt-3 me-3 position-absolute top-0 end-0">${
+          <button id="modal_accuracy" class="btn btn-primary mt-3 me-3 position-absolute top-0 end-0">${
             accuracy.score === null
               ? 'not found'
               : accuracy.score + '%' + ' accuracy'
@@ -178,7 +166,7 @@ const show_modal = (modal_data) => {
 </div>
   
   `);
-
+  // Modal features
   const featuresListModal = document.getElementById('featuresListModal');
   // console.log(modal_data.features);
   const features_data_arr = Object.values(modal_data.features);
@@ -197,21 +185,52 @@ const show_modal = (modal_data) => {
       featuresListModal.appendChild(li);
     }
   });
+
+  // Modal integrations
   const modal_Integrations = document.getElementById('modal_Integrations');
 
-  // console.log();
-  modal_data.integrations.forEach((ele) => {
-    console.log(ele);
-    if (ele) {
+  if (modal_data.integrations === 0 || modal_data.integrations === null) {
+    const li = document.createElement('li');
+    li.innerText = 'not found';
+    modal_Integrations.appendChild(li);
+  } else {
+    modal_data.integrations.forEach((ele) => {
+      // console.log(ele);
       const li = document.createElement('li');
       li.innerText = ele;
       modal_Integrations.appendChild(li);
-    } else {
-      const li = document.createElement('li');
-      li.innerText = 'not found';
-      modal_Integrations.appendChild(li);
-    }
-  });
+    });
+  }
+
+  // modal_accuracy
+  // console.log(modal_data.pricing);
+  // console.log(modal_data.pricing);
+  const price_box = document.getElementById('price_box');
+  if (modal_data.pricing === null || modal_data.pricing.length === 0) {
+    const basic = document.createElement('div');
+    basic.setAttribute('class', 'text-success bg-white fw-bold p-3 rounded');
+    basic.innerHTML = ' Free of Cost';
+    const pro = document.createElement('div');
+    pro.setAttribute('class', 'text-success bg-white fw-bold p-3 rounded');
+    pro.innerHTML = ' Free of Cost';
+    const enterprise = document.createElement('div');
+    enterprise.setAttribute(
+      'class',
+      'text-success bg-white fw-bold p-3 rounded'
+    );
+    enterprise.innerHTML = ' Free of Cost';
+    price_box.appendChild(basic);
+    price_box.appendChild(pro);
+    price_box.appendChild(enterprise);
+  } else {
+    modal_data.pricing.forEach((ele) => {
+      console.log(ele.plan);
+      const basic = document.createElement('div');
+      basic.setAttribute('class', 'text-success bg-white fw-bold p-3 rounded');
+      basic.innerHTML = ` ${ele.price} ${ele.plan} `;
+      price_box.appendChild(basic);
+    });
+  }
 };
 
 function spinner(isLoading) {
