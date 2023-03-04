@@ -140,25 +140,8 @@ const show_modal = (modal_data) => {
               </div>
               <div class="col">
                   <h5>Integrations</h5>
-                  <ul>
-                      <li>${
-                        integrations === null || integrations[0] === undefined
-                          ? 'not found'
-                          : integrations[0]
-                      }
-                      </li>
-                      <li>${
-                        integrations === null || integrations[1] === undefined
-                          ? 'not found'
-                          : integrations[1]
-                      }</li>
-                      <li>
-                      ${
-                        integrations === null || integrations[2] === undefined
-                          ? 'not found'
-                          : integrations[2]
-                      }</li>
-                  
+                  <ul id="modal_Integrations">
+                   
                       
                   </ul>
               </div>
@@ -202,36 +185,33 @@ const show_modal = (modal_data) => {
   // console.log(features_data_arr);
 
   features_data_arr.forEach((ele) => {
-    console.log(ele.feature_name);
+    // console.log(ele.feature_name);
     // console.log(ele.feature_name.length);
-    const li = document.createElement('li');
-    if (1) {
+    if (ele.feature_name) {
       const li = document.createElement('li');
       li.innerText = ele.feature_name;
       featuresListModal.appendChild(li);
     } else {
+      const li = document.createElement('li');
       li.innerText = 'not found';
       featuresListModal.appendChild(li);
     }
   });
-  // input_output_examples === null
-  // ? 'not found'
-  // : features_data[0].feature_name
-  // for (const key in modal_data.features) {
-  //   console.log(key);
-  //   const element = modal_data.features[key];
-  // console.log(element);
-  // }
-  // modal_data.features.forEach(element => {
-  //   console.log(element);
-  // });
-  // displayData.forEach((element) => {
-  //   element.features.forEach((ele) => {
-  //     const li = document.createElement('li');
-  //     li.innerText = ele;
-  //     featuresListModal.appendChild(li);
-  //   });
-  // });
+  const modal_Integrations = document.getElementById('modal_Integrations');
+
+  // console.log();
+  modal_data.integrations.forEach((ele) => {
+    console.log(ele);
+    if (ele) {
+      const li = document.createElement('li');
+      li.innerText = ele;
+      modal_Integrations.appendChild(li);
+    } else {
+      const li = document.createElement('li');
+      li.innerText = 'not found';
+      modal_Integrations.appendChild(li);
+    }
+  });
 };
 
 function spinner(isLoading) {
